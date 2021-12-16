@@ -1,6 +1,7 @@
 const express = require("express");
 const { dbAction, dbFail, dbSuccess } = require("../helper/dbHelper");
 const { validateNewPost } = require("../helper/validateHelper");
+const { hashValue, verifyHash } = require("../helper/hashHelper");
 
 const router = express.Router();
 
@@ -14,10 +15,14 @@ router.get("/all", async (req, res) => {
 
 router.post("/new", validateNewPost, async (req, res) => {
   // after validation
-  const sql =
-    "INSERT INTO posts (name, age, email, password) VALUES (?, ?, ?, ?)";
+  const sql = `INSERT INTO posts(name, age, email, password) VALUES(?, ?, ?, ?)`;
   const { name, age, email, password } = req.body;
-  const dbResult = await dbAction(sql, [name, age, email, password]);
+  const dbResult = await dbAction(sql, [
+    name,
+    age,
+    email,
+    hashValue(req.body.password),
+  ]);
   if (dbResult === false) {
     return res.status(500).json({ error: "sideways" });
   }

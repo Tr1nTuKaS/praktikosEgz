@@ -6,8 +6,8 @@ async function validateNewPost(req, res, next) {
   // validate body using joi
   const postsSchema = joi.object({
     name: joi.string().min(3).max(50).required(),
-    age: joi.string().min(2).max(3).required(),
-    email: joi.string().email("@").required(),
+    age: joi.required(),
+    email: joi.string().email().required(),
     password: joi.string().min(5).max(255).required(),
   });
   try {
