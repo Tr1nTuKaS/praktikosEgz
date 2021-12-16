@@ -25,8 +25,8 @@ router.post("/new", validateNewPost, async (req, res) => {
 });
 module.exports = router;
 
-router.delete('/:id', authenticateToken, async (req, res) => {
-  const sql = 'DELETE FROM posts WHERE id = ? LIMIT 1';
+router.delete("/:id", validateNewPost, async (req, res) => {
+  const sql = "DELETE FROM posts WHERE id = ? LIMIT 1";
   const dbResult = await dbAction(sql, [req.params.id]);
   if (dbResult === false) {
     dbFail(res);
@@ -34,5 +34,5 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   if (dbResult.affectedRows === 1) {
     return dbSuccess(res, []);
   }
-  dbFail(res, 'no rows affected');
+  dbFail(res, "no rows affected");
 });
