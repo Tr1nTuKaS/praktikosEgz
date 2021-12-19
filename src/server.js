@@ -6,6 +6,7 @@ const app = express();
 
 const { serverPort } = require("../config/config");
 const PORT = serverPort || 3000;
+
 // middleware
 app.use(morgan("common"));
 app.use(cors());
