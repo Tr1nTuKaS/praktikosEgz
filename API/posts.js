@@ -52,43 +52,14 @@ router.put("/update/:id", async (req, res) => {
   const sql = `UPDATE posts SET name=?, age=?, email=?, password=?  WHERE id=?`;
   const { name, age, email, password } = req.body;
   const dbResult = await dbAction(sql, [
-    req.params.id,
     name,
     age,
     email,
     password,
+    req.params.id,
   ]);
   if (dbResult === false) return dbFail(res);
   return dbSuccess(res, dbResult);
 });
-router.post("/", async (req, res) => {
-  console.log("/orders POST got ", req.body);
 
-  try {
-    const conn = await mysql.createConnection(dbConfig);
-    let sql = `
-        INSERT INTO posts (name,age,email,paswword)
-        VALUES(?,?,?,?)`;
-    const [resultOrder] = await conn.execute(sql, Object.values(req.body));
-
-    sql = `
-        UPDATE posts
-        SET name=?, age=?, email=?, password=?
-        WHERE id = ?
-        `;
-    const [resultUpdate] = await conn.execute(sql, [
-      req.body.name,
-      req.body.age,
-      req.body.email,
-      req.body.password,
-      req.body.product_id,
-    ]);
-
-    res.send({ msg: "success connected", resultOrder, resultUpdate });
-    conn.end();
-  } catch (error) {
-    console.log("/ got error", error);
-    res.status(500).send({ error: "Something wrong with orders" });
-  }
-});
 module.exports = router;
