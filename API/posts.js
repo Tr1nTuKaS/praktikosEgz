@@ -55,7 +55,7 @@ router.put("/update/:id", async (req, res) => {
     name,
     age,
     email,
-    password,
+    hashValue(password),
     req.params.id,
   ]);
   if (dbResult === false) return dbFail(res);

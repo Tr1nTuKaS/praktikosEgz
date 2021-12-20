@@ -17,7 +17,9 @@ app.get("/", (req, res) => {
 });
 
 const posts = require("../API/posts");
+const users = require("../API/users");
 
 app.use("/posts", posts);
+app.use("/users", users);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

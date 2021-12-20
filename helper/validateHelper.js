@@ -1,5 +1,4 @@
 const joi = require("joi");
-const { hashValue } = require("./hashHelper");
 
 // eslint-disable-next-line consistent-return
 async function validateNewPost(req, res, next) {
