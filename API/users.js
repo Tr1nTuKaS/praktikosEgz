@@ -43,11 +43,11 @@ router.post("/login", async (req, res) => {
       throw new Error("user not found");
     }
     console.log(foundUser);
-    console.log(body.password, foundUser[0].pass);
+    console.log(body.password, foundUser[0].password);
     if (bcrypt.compareSync(body.password, foundUser[0].password)) {
       const userToBeEncrypted = {
         email: foundUser[0].email,
-        userId: foundUser[0].id,
+        token: foundUser[0].id,
       };
 
       const token = jwt.sign(
