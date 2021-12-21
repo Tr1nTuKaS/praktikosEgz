@@ -1,0 +1,108 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 21, 2021 at 06:58 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `praktinisegz`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `age` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `name`, `age`, `email`, `password`) VALUES
+(21, 'Martynas', 54, 'martynas@nezinantis.com', '$2a$10$b5/agUkk0JbSDMADnj08puyMTun0oQ55usg.HHxUVhiftKNjQ8hXq'),
+(23, 'Tomas', 32, 'tomas@tomaitis.com', '$2a$10$3xi8g68qNdjfRQyh7DCyueSEP9jwRIxTsfcOmTVyg3SJ.22NCTlDK');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `timeStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `timeStamp`) VALUES
+(1, 'tim@tomas.com', '$2a$10$YWC4Ea.J51wTeSw/JMSj7OhCDvtn71LqfjTHsoq/yfbftXVMtEGoi', '2021-12-20 13:43:05'),
+(2, 'veikia@reg.com', '$2a$10$ZeTlXuJQT0K5U2A/iLYPZuUlVoJyYg988DIZjAA5/FssxI1GGrLGW', '2021-12-20 13:12:40'),
+(3, 'a@a.com', '$2a$10$Fa.ntnIpf3OepdhEjtU5HO7.GjomexbBHwP.2kzEPzmCx0Dm1V/C.', '2021-12-20 13:34:53'),
+(4, 'tim@tom.com', '$2a$10$4t0gouC9ARxUrkw704TPo.0oZ48YtRAwpS7f5os/oSlz5UuDkQw0C', '2021-12-20 13:41:04'),
+(6, 'a@b.com', '$2a$10$AH1bUBFdvSrFQJ4w1tZAGOUR2ek2FELeGTeV6v6ufU6tJM//KASPm', '2021-12-20 16:08:06'),
+(7, 'jonas@jonaitis.com', '$2a$10$SVWF/EM.wKVqES67Ps1jJen1Xm37yimuqpKEw/vwbf57cpvuGIu7K', '2021-12-20 17:21:30');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
